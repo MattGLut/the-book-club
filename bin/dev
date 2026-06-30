@@ -13,4 +13,7 @@ export PORT="${PORT:-3000}"
 export RUBY_DEBUG_OPEN="true"
 export RUBY_DEBUG_LAZY="true"
 
+# Ensure compiled CSS exists before the server boots
+bin/rails tailwindcss:build
+
 exec foreman start -f Procfile.dev "$@"
