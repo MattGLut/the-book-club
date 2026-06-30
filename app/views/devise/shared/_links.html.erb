@@ -1,0 +1,9 @@
+<div class="space-y-2 text-accent">
+  <%- if controller_name != 'sessions' %>
+    <p><%= link_to "Sign in", new_session_path(resource_name), class: "no-underline hover:underline" %></p>
+  <% end %>
+
+  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <p><%= link_to "Forgot your password?", new_password_path(resource_name), class: "no-underline hover:underline" %></p>
+  <% end %>
+</div>

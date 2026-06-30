@@ -1,0 +1,28 @@
+<h2 class="mb-6 text-2xl font-semibold tracking-tight">Sign in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-5" }) do |f| %>
+  <div>
+    <%= f.label :email, class: "mb-1 block text-sm font-medium text-stone-700" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-base shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent" %>
+  </div>
+
+  <div>
+    <%= f.label :password, class: "mb-1 block text-sm font-medium text-stone-700" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-base shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="flex items-center gap-2">
+      <%= f.check_box :remember_me, class: "rounded border-stone-300 text-accent focus:ring-accent" %>
+      <%= f.label :remember_me, class: "text-sm text-stone-700" %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.submit "Sign in", class: "cursor-pointer rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover" %>
+  </div>
+<% end %>
+
+<div class="mt-6 text-sm">
+  <%= render "devise/shared/links" %>
+</div>

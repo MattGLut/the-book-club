@@ -1,0 +1,21 @@
+<% content_for :title, "Posts" %>
+
+<h2 class="mb-6 text-2xl font-semibold tracking-tight">Posts</h2>
+
+<% if @posts.any? %>
+  <ul class="divide-y divide-stone-200">
+    <% @posts.each do |post| %>
+      <li class="py-5 first:pt-0">
+        <h3 class="text-xl font-semibold leading-snug">
+          <%= link_to post.title, post, class: "text-accent no-underline hover:underline" %>
+        </h3>
+        <p class="mt-1 text-sm text-stone-500">
+          <%= post.user.email %> · <%= post.created_at.strftime("%B %-d, %Y") %>
+        </p>
+        <p class="mt-2 text-sm leading-relaxed text-stone-600"><%= post_excerpt(post) %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="italic text-stone-500">No posts yet.</p>
+<% end %>

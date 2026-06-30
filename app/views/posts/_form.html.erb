@@ -1,0 +1,27 @@
+<%= form_with model: post, class: "space-y-5" do |form| %>
+  <% if post.errors.any? %>
+    <div class="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
+      <h3 class="font-medium"><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h3>
+      <ul class="mt-2 list-disc pl-5">
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, class: "mb-1 block text-sm font-medium text-stone-700" %>
+    <%= form.text_field :title, autofocus: true, class: "w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-base shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent" %>
+  </div>
+
+  <div>
+    <%= form.label :body, "Body (Markdown)", class: "mb-1 block text-sm font-medium text-stone-700" %>
+    <%= form.text_area :body, rows: 20, class: "w-full rounded-md border border-stone-300 bg-white px-3 py-2 font-mono text-sm leading-relaxed shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent" %>
+    <p class="mt-1 text-xs text-stone-500">Write in Markdown. Use **bold**, _italic_, headings, lists, and links.</p>
+  </div>
+
+  <div>
+    <%= form.submit class: "cursor-pointer rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover" %>
+  </div>
+<% end %>

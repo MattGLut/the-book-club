@@ -1,0 +1,9 @@
+<% content_for :title, "New Post" %>
+
+<h2 class="mb-6 text-2xl font-semibold tracking-tight">New Post</h2>
+
+<%= render "form", post: @post %>
+
+<p class="mt-8">
+  <%= link_to "← Back to posts", posts_path, class: "text-sm text-accent no-underline hover:underline" %>
+</p>

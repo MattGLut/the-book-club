@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "The Book Club" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="The Book Club">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-screen bg-stone-50 text-stone-900 antialiased">
+    <header class="border-b border-stone-200 bg-white">
+      <div class="mx-auto flex max-w-2xl flex-wrap items-center justify-between gap-3 px-5 py-4">
+        <h1 class="text-lg font-semibold">
+          <%= link_to "The Book Club", root_path, class: "text-stone-900 no-underline hover:text-accent" %>
+        </h1>
+        <nav class="flex items-center gap-4 text-sm">
+          <%= link_to "Posts", posts_path, class: "text-accent no-underline hover:underline" %>
+          <% if user_signed_in? %>
+            <%= link_to "New Post", new_post_path, class: "text-accent no-underline hover:underline" %>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "cursor-pointer border-0 bg-transparent p-0 text-sm text-accent underline hover:text-accent-hover" %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path, class: "text-accent no-underline hover:underline" %>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+
+    <% if notice.present? %>
+      <p class="mx-auto max-w-2xl px-5 pt-4 text-sm text-emerald-900"><%= notice %></p>
+    <% end %>
+
+    <% if alert.present? %>
+      <p class="mx-auto max-w-2xl px-5 pt-4 text-sm text-red-800"><%= alert %></p>
+    <% end %>
+
+    <main class="mx-auto max-w-2xl px-5 py-8">
+      <%= yield %>
+    </main>
+  </body>
+</html>
